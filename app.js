@@ -15,6 +15,14 @@ Chart.defaults.borderColor = colors.border;
 Chart.defaults.font.family =
   'Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./service-worker.js").catch((error) => {
+      console.warn("Service Worker konnte nicht registriert werden:", error);
+    });
+  });
+}
+
 const sharedOptions = {
   responsive: true,
   maintainAspectRatio: false,
