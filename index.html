@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Makro-Finanzdashboard</title>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js" defer></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="dashboard-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Global Macro Monitor</p>
+          <h1>Makro-Finanzdashboard</h1>
+          <p class="hero-copy">
+            Kompakter Investor-Blick auf Risikoappetit, Liquiditaet, Energie,
+            Rohstoffe und strategische Reserven.
+          </p>
+        </div>
+        <div class="hero-status">
+          <span class="pulse"></span>
+          <span>Stand: Mai 2026</span>
+        </div>
+      </header>
+
+      <section class="kpi-grid" aria-label="Top Kennzahlen">
+        <article class="card kpi-card accent-gold">
+          <div class="card-topline">
+            <span>Fear &amp; Greed</span>
+            <span class="tag tag-gold">Greed</span>
+          </div>
+          <strong>69</strong>
+          <small>US-Aktienmarkt, Risikoappetit hoch</small>
+        </article>
+
+        <article class="card kpi-card accent-teal">
+          <div class="card-topline">
+            <span>CHF/USD</span>
+            <span class="tag tag-blue">7. Mai 2026</span>
+          </div>
+          <strong>0.781816</strong>
+          <small>USD pro CHF, Tagesveraenderung <span class="positive">+0.18%</span></small>
+        </article>
+
+        <article class="card kpi-card accent-blue">
+          <div class="card-topline">
+            <span>Fed-Bilanz</span>
+            <span class="tag tag-blue">8. Mai 2026</span>
+          </div>
+          <strong>6,709,505M</strong>
+          <small>USD, Wochenveraenderung <span class="negative">-0.34%</span></small>
+        </article>
+
+        <article class="card kpi-card accent-green">
+          <div class="card-topline">
+            <span>Uran Spot</span>
+            <span class="tag tag-green">Ende Apr. 2026</span>
+          </div>
+          <strong>$86.35/lb</strong>
+          <small>Spotpreis, Monatsveraenderung <span class="positive">+4.2%</span></small>
+        </article>
+      </section>
+
+      <section class="grid" aria-label="Makro Module">
+        <article class="card module span-4" id="fear-greed">
+          <div class="module-header">
+            <div>
+              <p class="module-number">01</p>
+              <h2>Fear and Greed Index</h2>
+            </div>
+            <span class="tag tag-gold">69 / Greed</span>
+          </div>
+          <div class="gauge-wrap">
+            <canvas id="fearGreedChart"></canvas>
+            <div class="gauge-center">
+              <strong>69</strong>
+              <span>Greed</span>
+            </div>
+          </div>
+          <p class="compact-copy">Aktienmarkt-Sentiment bleibt risikofreudig, aber nicht euphorisch.</p>
+        </article>
+
+        <article class="card module span-4" id="chf-usd">
+          <div class="module-header">
+            <div>
+              <p class="module-number">02</p>
+              <h2>CHF/USD Chart</h2>
+            </div>
+            <span class="delta positive">+0.0014</span>
+          </div>
+          <canvas id="chfUsdChart"></canvas>
+          <div class="mini-stats">
+            <span>Aktuell <strong>0.781816</strong></span>
+            <span>USD/CHF 2026 <strong>0.7630-0.8034</strong></span>
+          </div>
+        </article>
+
+        <article class="card module span-4" id="repo">
+          <div class="module-header">
+            <div>
+              <p class="module-number">03</p>
+              <h2>REPO-Marktdaten</h2>
+            </div>
+            <span class="tag tag-blue">OFR-style</span>
+          </div>
+          <canvas id="repoChart"></canvas>
+          <div class="repo-grid" id="repoStats"></div>
+        </article>
+
+        <article class="card module span-6" id="fed-balance">
+          <div class="module-header">
+            <div>
+              <p class="module-number">04</p>
+              <h2>FED-Bilanz</h2>
+            </div>
+            <span class="delta negative">-22,900M WoW</span>
+          </div>
+          <div class="split">
+            <div class="big-number">
+              <span>Aktueller Stand</span>
+              <strong>6,709,505M USD</strong>
+              <small>Update: 8. Mai 2026, naechste Aktualisierung erwartet woechentlich.</small>
+            </div>
+            <canvas id="fedChart"></canvas>
+          </div>
+        </article>
+
+        <article class="card module span-6" id="private-credit">
+          <div class="module-header">
+            <div>
+              <p class="module-number">05</p>
+              <h2>Privatkreditschulden</h2>
+            </div>
+            <span class="delta positive">Trend steigend</span>
+          </div>
+          <canvas id="privateDebtChart"></canvas>
+          <p class="compact-copy">Dummy-Daten: aggregierte Privatkredite steigen weiter, Wachstumsrate flacht zuletzt leicht ab.</p>
+        </article>
+
+        <article class="card module span-3" id="uranium-spot">
+          <div class="module-header tight">
+            <div>
+              <p class="module-number">06</p>
+              <h2>Uran-Spotpreis</h2>
+            </div>
+          </div>
+          <div class="price-tile">
+            <strong>$86.35</strong>
+            <span>USD/lb</span>
+            <em class="positive">+4.2% MoM</em>
+          </div>
+          <canvas id="uraniumSpotChart"></canvas>
+        </article>
+
+        <article class="card module span-3" id="uranium-deficit">
+          <div class="module-header tight">
+            <div>
+              <p class="module-number">07</p>
+              <h2>Uran-Defizit</h2>
+            </div>
+          </div>
+          <div class="deficit-meter">
+            <span style="width: 74%"></span>
+          </div>
+          <p class="signal-title">Struktureller Supply Gap</p>
+          <p class="compact-copy">Langfristige Nachfrage uebersteigt primaere Minenproduktion; Sekundaerangebot bleibt begrenzt.</p>
+        </article>
+
+        <article class="card module span-3" id="nuclear-share">
+          <div class="module-header tight">
+            <div>
+              <p class="module-number">08</p>
+              <h2>Kernenergieanteil</h2>
+            </div>
+          </div>
+          <canvas id="nuclearShareChart"></canvas>
+          <p class="compact-copy">Globaler Stromanteil mit langfristig steigendem Trend.</p>
+        </article>
+
+        <article class="card module span-3" id="uranium-forecast">
+          <div class="module-header tight">
+            <div>
+              <p class="module-number">10</p>
+              <h2>Uranenergie-Wachstum</h2>
+            </div>
+          </div>
+          <canvas id="uraniumForecastChart"></canvas>
+          <p class="compact-copy">Prognose: Kapazitaetswachstum bis 2030/2040 durch Neubauten und Laufzeitverlaengerungen.</p>
+        </article>
+
+        <article class="card module span-8" id="power-mix">
+          <div class="module-header">
+            <div>
+              <p class="module-number">09</p>
+              <h2>Globaler Strommix und Trends</h2>
+            </div>
+            <span class="tag tag-green">Solar/Wind/Nuclear up</span>
+          </div>
+          <canvas id="powerMixChart"></canvas>
+        </article>
+
+        <article class="card module span-4" id="shortages">
+          <div class="module-header">
+            <div>
+              <p class="module-number">11</p>
+              <h2>Rohstoff- und Materialengpaesse</h2>
+            </div>
+            <span class="tag tag-red">Defizite</span>
+          </div>
+          <div class="shortage-list" id="shortageList"></div>
+        </article>
+
+        <article class="card module span-12" id="oil-reserves">
+          <div class="module-header">
+            <div>
+              <p class="module-number">12</p>
+              <h2>Strategische Oelreserven wichtiger Laender</h2>
+            </div>
+            <span class="tag tag-blue">Dummy wenn keine Live-Daten</span>
+          </div>
+          <div class="oil-layout">
+            <canvas id="oilReserveChart"></canvas>
+            <div class="reserve-table" id="reserveTable"></div>
+          </div>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
