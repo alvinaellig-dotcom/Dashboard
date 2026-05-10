@@ -34,5 +34,16 @@ python3 -m http.server 8000
 
 Dann `http://localhost:8000` im Browser oeffnen.
 
+## Als PWA auf dem iPhone testen
+
+1. Lokalen Server starten: `python3 -m http.server 8000`
+2. iPhone und Rechner ins gleiche Netzwerk bringen.
+3. Auf dem iPhone die lokale Rechner-IP mit Port oeffnen, zum Beispiel
+   `http://192.168.1.23:8000`.
+4. In Safari `Teilen` -> `Zum Home-Bildschirm` auswaehlen.
+
+Die App enthaelt `manifest.json`, `service-worker.js`, iOS-PWA-Meta-Tags und
+lokale App-Icons.
+
 Das Dashboard nutzt feste Beispielwerte aus der Aufgabenstellung und
 Dummy-Zeitreihen fuer Bereiche ohne angebundene Live-Datenquelle.
